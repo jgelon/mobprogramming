@@ -2,8 +2,10 @@ package nl.capgemini.taguild.mobprogramming.controllers;
 
 import nl.capgemini.taguild.mobprogramming.objects.PizzaObject;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -19,16 +21,16 @@ public class PizzaController {
         return "Hallo allemaal";
     }
 
-    @GetMapping("/pizza")
-    public PizzaObject getPizza() {
-        return new PizzaObject(9.50, "vegetariana", 1.0);
-    }
+//    @GetMapping("/pizza")
+//    public PizzaObject getPizza() {
+//        return new PizzaObject(9.50, "vegetariana", 1.0);
+//    }
 
     @GetMapping("/pizzalijst")
     public List<PizzaObject> getPizzaList(){
-//        pizzaList.add(new PizzaObject(800.00, "truffel", 900.00));
-//        pizzaList.add(new PizzaObject(10.00, "margherita", 0.10));
-//        pizzaList.add(new PizzaObject(0.10, "kanaleneiland", 0.00));
+        pizzaList.add(new PizzaObject(800.00, "truffel", 900.00));
+        pizzaList.add(new PizzaObject(10.00, "margherita", 0.10));
+        pizzaList.add(new PizzaObject(0.10, "kanaleneiland", 0.00));
         return pizzaList;
     }
 
@@ -37,4 +39,18 @@ public class PizzaController {
         pizzaList.add(pizza);
     }
 
+    @GetMapping("/pizza/{id}")
+    public PizzaObject getOnePizza(@PathVariable("id") int pizzaIndex){
+        return pizzaList.get(pizzaIndex);
+    }
+
+    @GetMapping("/pizza")
+    public PizzaObject getOnePizzaByName(@RequestParam("name") String name) {
+        for(PizzaObject pizza : pizzaList) {
+            if(pizza.getName().equals(name)) {
+                return pizza;
+            }
+        }
+        throw new IllegalArgumentException("Sorry deze " + name + " kon niet gevonden worden!");
+    }
 }
