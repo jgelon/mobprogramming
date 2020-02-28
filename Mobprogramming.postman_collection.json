@@ -1,0 +1,70 @@
+{
+	"info": {
+		"_postman_id": "497d8236-1519-4ba6-a0a2-11ad7ba39758",
+		"name": "Mob",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get Named Pizza",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pizza Id",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"price\": 9.5,\n    \"name\": \"vegetariana3\",\n    \"cost\": 1.0\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/pizza/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pizza",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get PizzaLijst",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/pizzalijst",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pizzalijst"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
